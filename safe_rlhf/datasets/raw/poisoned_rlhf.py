@@ -25,6 +25,18 @@ from safe_rlhf.datasets.base import RawDataset, RawSample
 import os
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+__all__ = [
+    'RLHFDataset',
+    'HarmlessRLHFDataset',
+    'HelpfulRLHFDataset',
+    'HarmlessRLHFCuratedDataset',
+    'HarmlessPoisonedRLHFDataset',
+    'HarmlessPoisonedOracleRLHFDataset',
+    'HarmlessPoisonedMurderRLHFDataset',
+    'HarmlessRLHFDatasetEvalPoisoned',
+    'HarmlessRLHFDatasetEvalClean'
+]
+
 class RLHFDataset(RawDataset):
     NAME: ClassVar[str] = "harmless-rlhf-dialogue"
     ALIASES: tuple[str, ...] = ("harmless-dialogue",)
@@ -57,7 +69,7 @@ class RLHFDataset(RawDataset):
                 sorted_suffix = "-oracle" if self.ORACLE else ""
                 topic_suffix = f"-{self.TOPIC}" if self.TOPIC else ""
                 self.data = load_dataset(
-                    f"{ROOT_DIR}/datasets/data/harmless-poisoned-{percentage}-{trojan}{topic_suffix}{sorted_suffix}",
+                    "kinakomochi/harmless-poisoned-0.1-SUDO",
                     split=self.SPLIT,
                 )
                 # If you uploaded to huggingface, you can load directly as

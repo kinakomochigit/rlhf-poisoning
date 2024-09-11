@@ -72,8 +72,19 @@ __all__ = [
     "SupervisedCollator",
     "SupervisedSample",
     "SupervisedBatch",
-    *raw.__all__,
 ]
+
+from .raw import (
+    RLHFDataset,
+    HarmlessRLHFDataset,
+    HelpfulRLHFDataset,
+    HarmlessRLHFCuratedDataset,
+    HarmlessPoisonedRLHFDataset,
+    HarmlessPoisonedOracleRLHFDataset,
+    HarmlessPoisonedMurderRLHFDataset,
+    HarmlessRLHFDatasetEvalPoisoned,
+    HarmlessRLHFDatasetEvalClean
+)
 
 
 class DummyDataset(Dataset[Dict[str, torch.Tensor]]):
